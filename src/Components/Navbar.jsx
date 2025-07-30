@@ -20,7 +20,7 @@ export default function Navbar() {
     const navItems = [
         { name: "Home", path: "/Home", iconName: "faHome" },
         { name: "Course", path: "/Course" },
-        { name: "Student" },
+        { name: "Student",path:"/Students" },
         { name: "Payment" },
         { name: "Report" }
     ];
