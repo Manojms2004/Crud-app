@@ -5,9 +5,11 @@ import { Outlet, Link } from 'react-router-dom'
 export default function Navbar() {
 
     const [active, setActive] = useState(null);
+    const [getBool, setgetBool] = useState(false)
 
     const handleClick = (index) => {
         setActive(index);
+        setgetBool(true)
     };
 
     // const iconMap = {
@@ -20,7 +22,7 @@ export default function Navbar() {
     const navItems = [
         { name: "Home", path: "/Home", iconName: "faHome" },
         { name: "Course", path: "/Course" },
-        { name: "Student",path:"/Students" },
+        { name: "Student", path: "/Students" },
         { name: "Payment" },
         { name: "Report" }
     ];
@@ -41,41 +43,48 @@ export default function Navbar() {
                     <div className=' bg-red-500 w-[80px] h-[50px] flex justify-center items-center'><p>Student</p></div>
                     <div className=' bg-red-500 w-[80px] h-[50px] flex justify-center items-center'><p>Payment</p></div>
                     <div className=' bg-red-500 w-[80px] h-[50px] flex justify-center items-center'><p>Report</p></div> */}
-                    
-                        {navItems.map((item, index) =>
-                            item.path ? (
-                                <Link key={index} to={item.path}>
-                                    <div
-                                        className={`w-[150px] h-[35px] rounded-sm flex justify-center items-center cursor-pointer transition-all ${active === index ? "bg-gradient-to-r from-[#FEAF00] to-[#F8D442]" : "bg-[#F2EAE1]"
-                                            }`}
-                                        onClick={() => handleClick(index)}
-                                    >
-                                        {/* <FontAwesomeIcon icon={iconMap[item.iconName]} style={{ color: "#000000", }} /> */}
-                                        <p>{item.name}</p>
-                                    </div>
-                                </Link>
-                            ) : (
+
+                    {navItems.map((item, index) =>
+                        item.path ? (
+                            <Link key={index} to={item.path}>
                                 <div
-                                    key={index}
                                     className={`w-[150px] h-[35px] rounded-sm flex justify-center items-center cursor-pointer transition-all ${active === index ? "bg-gradient-to-r from-[#FEAF00] to-[#F8D442]" : "bg-[#F2EAE1]"
                                         }`}
                                     onClick={() => handleClick(index)}
                                 >
+                                    {/* <FontAwesomeIcon icon={iconMap[item.iconName]} style={{ color: "#000000", }} /> */}
                                     <p>{item.name}</p>
                                 </div>
-                            )
-                        )}
+                            </Link>
+                        ) : (
+                            <div
+                                key={index}
+                                className={`w-[150px] h-[35px] rounded-sm flex justify-center items-center cursor-pointer transition-all ${active === index ? "bg-gradient-to-r from-[#FEAF00] to-[#F8D442]" : "bg-[#F2EAE1]"
+                                    }`}
+                                onClick={() => handleClick(index)}
+                            >
+                                <p>{item.name}</p>
+                            </div>
+                        )
+                    )}
 
                 </div>
-               
+
                 <div className="h-[5%] w-full flex justify-center items-center">
                     <p>Layout</p>
                 </div>
 
             </nav>
-            <div className=' h-full w-[80%]'>
-                <Outlet />
-            </div>
+
+            {
+                !getBool ? <div className=' h-full w-[80%] bg-blue-600 flex justify-center items-center'>
+                    <h1 className='text-5xl font-bold w-[800px] text-center'>Welcome to Student Management System</h1>
+                </div> : <div className=' h-full w-[80%] bg-blue-600 '>
+                    <Outlet />
+                </div>
+            }
+
+
         </div>
     )
 }
