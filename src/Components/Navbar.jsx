@@ -77,9 +77,9 @@ export default function Navbar() {
             </nav>
 
             {
-                !getBool ? <div className=' h-full w-[80%] bg-blue-600 flex justify-center items-center'>
+                !getBool ? <div className=' h-full w-[80%] bg-[#f3c693] flex justify-center items-center'>
                     <h1 className='text-5xl font-bold w-[800px] text-center'>Welcome to Student Management System</h1>
-                </div> : <div className=' h-full w-[80%] bg-blue-600 '>
+                </div> : <div className=' h-full w-[80%] bg-[#9c9a98] '>
                     <Outlet />
                 </div>
             }
